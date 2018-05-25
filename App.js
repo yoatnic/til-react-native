@@ -5,7 +5,15 @@
  */
 
 import React, { Component } from "react";
-import { Platform, StyleSheet, Text, View, Button } from "react-native";
+import {
+  Platform,
+  Modal,
+  TouchableHighlight,
+  StyleSheet,
+  Text,
+  View,
+  Button
+} from "react-native";
 
 const instructions = Platform.select({
   ios: "Press Cmd+R to reload,\n" + "Cmd+D or shake for dev menu",
@@ -19,26 +27,50 @@ export default class App extends Component<Props> {
   constructor() {
     super();
     this.state = {
-      text: ""
+      modalVisible: false
     };
   }
 
   onPress() {
-    this.setState({ text: "tapped!" });
+    this.setState({ modalVisible: true });
   }
 
   render() {
     return (
       <View style={styles.container}>
+        <Modal
+          animationType="slide"
+          transparent={false}
+          visible={this.state.modalVisible}
+          onRequestClose={() => {
+            alert("Modal has been closed.");
+          }}
+        >
+          <View style={{ marginTop: 22 }}>
+            <View>
+              <Text>Hello World!</Text>
+
+              <TouchableHighlight
+                onPress={() => {
+                  this.setState({ modalVisible: false });
+                }}
+              >
+                <Text>Hide Modal</Text>
+              </TouchableHighlight>
+            </View>
+          </View>
+        </Modal>
+
         <Text style={styles.welcome}>Welcome to React Native!</Text>
         <Text style={styles.instructions}>To get started, edit App.js</Text>
         <Text style={styles.instructions}>{instructions}</Text>
-        <Text style={styles.instructions}>{this.state.text}</Text>
         <Button
-          onPress={() => this.onPress()}
-          title="Tap me"
+          onPress={() => {
+            this.setState({ modalVisible: true });
+          }}
+          title="Show Modal"
           color="#841584"
-          accessibilityLabel="change state"
+          accessibilityLabel="show modal on tap"
         />
       </View>
     );
