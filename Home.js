@@ -14,14 +14,24 @@ import {
   Button
 } from "react-native";
 import Profile from "./Profile";
+import ScrollView from "./ScrollView";
 
 type Props = {};
 export default class App extends Component<Props> {
-  _onForward() {
+  _onForwardToProfile() {
     let nextIndex = ++this.props.index;
     this.props.navigator.push({
       component: Profile,
       title: "Profile " + nextIndex,
+      passProps: { index: nextIndex }
+    });
+  }
+
+  _onForwardToScrollView() {
+    let nextIndex = ++this.props.index;
+    this.props.navigator.push({
+      component: ScrollView,
+      title: "ScrollView " + nextIndex,
       passProps: { index: nextIndex }
     });
   }
@@ -31,11 +41,19 @@ export default class App extends Component<Props> {
       <View style={styles.container}>
         <Button
           onPress={() => {
-            this._onForward();
+            this._onForwardToProfile();
           }}
           title="Profile"
           color="#841584"
           accessibilityLabel="show Profile on tap"
+        />
+        <Button
+          onPress={() => {
+            this._onForwardToScrollView();
+          }}
+          title="ScrollView"
+          color="#841584"
+          accessibilityLabel="show ScrollView on tap"
         />
       </View>
     );
