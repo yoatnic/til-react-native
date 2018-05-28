@@ -15,6 +15,7 @@ import {
 } from "react-native";
 import Profile from "./Profile";
 import ScrollView from "./ScrollView";
+import AnimationView from "./AnimationView";
 
 type Props = {};
 export default class App extends Component<Props> {
@@ -32,6 +33,15 @@ export default class App extends Component<Props> {
     this.props.navigator.push({
       component: ScrollView,
       title: "ScrollView " + nextIndex,
+      passProps: { index: nextIndex }
+    });
+  }
+
+  _onForwardToAnimationView() {
+    let nextIndex = ++this.props.index;
+    this.props.navigator.push({
+      component: AnimationView,
+      title: "AnimationView " + nextIndex,
       passProps: { index: nextIndex }
     });
   }
@@ -54,6 +64,14 @@ export default class App extends Component<Props> {
           title="ScrollView"
           color="#841584"
           accessibilityLabel="show ScrollView on tap"
+        />
+        <Button
+          onPress={() => {
+            this._onForwardToAnimationView();
+          }}
+          title="Animation"
+          color="#841584"
+          accessibilityLabel="show Animation on tap"
         />
       </View>
     );
