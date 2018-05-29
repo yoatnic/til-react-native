@@ -16,6 +16,7 @@ import {
 import Profile from "./Profile";
 import ScrollView from "./ScrollView";
 import AnimationView from "./AnimationView";
+import PickerView from "./PickerView";
 
 type Props = {};
 export default class App extends Component<Props> {
@@ -46,6 +47,15 @@ export default class App extends Component<Props> {
     });
   }
 
+  _onForwardToPickerView() {
+    let nextIndex = ++this.props.index;
+    this.props.navigator.push({
+      component: PickerView,
+      title: "PickerView " + nextIndex,
+      passProps: { index: nextIndex }
+    });
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -72,6 +82,14 @@ export default class App extends Component<Props> {
           title="Animation"
           color="#841584"
           accessibilityLabel="show Animation on tap"
+        />
+        <Button
+          onPress={() => {
+            this._onForwardToPickerView();
+          }}
+          title="Picker"
+          color="#841584"
+          accessibilityLabel="show Picker on tap"
         />
       </View>
     );
