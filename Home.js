@@ -17,6 +17,7 @@ import Profile from "./Profile";
 import ScrollView from "./ScrollView";
 import AnimationView from "./AnimationView";
 import PickerView from "./PickerView";
+import FlatListView from "./FlatListView";
 
 type Props = {};
 export default class App extends Component<Props> {
@@ -56,6 +57,15 @@ export default class App extends Component<Props> {
     });
   }
 
+  _onForwardToFlatListView() {
+    let nextIndex = ++this.props.index;
+    this.props.navigator.push({
+      component: FlatListView,
+      title: "FlatListView " + nextIndex,
+      passProps: { index: nextIndex }
+    });
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -90,6 +100,14 @@ export default class App extends Component<Props> {
           title="Picker"
           color="#841584"
           accessibilityLabel="show Picker on tap"
+        />
+        <Button
+          onPress={() => {
+            this._onForwardToFlatListView();
+          }}
+          title="FlatList"
+          color="#841584"
+          accessibilityLabel="show FlatList on tap"
         />
       </View>
     );
