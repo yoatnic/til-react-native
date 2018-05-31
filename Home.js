@@ -18,6 +18,7 @@ import ScrollView from "./ScrollView";
 import AnimationView from "./AnimationView";
 import PickerView from "./PickerView";
 import FlatListView from "./FlatListView";
+import InputAccessoryView from "./InputAccessoryView";
 
 type Props = {};
 export default class App extends Component<Props> {
@@ -66,6 +67,15 @@ export default class App extends Component<Props> {
     });
   }
 
+  _onForwardToInputAccessoryView() {
+    let nextIndex = ++this.props.index;
+    this.props.navigator.push({
+      component: InputAccessoryView,
+      title: "InputAccessoryView " + nextIndex,
+      passProps: { index: nextIndex }
+    });
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -108,6 +118,14 @@ export default class App extends Component<Props> {
           title="FlatList"
           color="#841584"
           accessibilityLabel="show FlatList on tap"
+        />
+        <Button
+          onPress={() => {
+            this._onForwardToInputAccessoryView();
+          }}
+          title="InputAccessory"
+          color="#841584"
+          accessibilityLabel="show InputAccessory on tap"
         />
       </View>
     );
