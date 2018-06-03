@@ -20,6 +20,7 @@ import PickerView from "./PickerView";
 import FlatListView from "./FlatListView";
 import InputAccessoryView from "./InputAccessoryView";
 import TextInputView from "./TextInputView";
+import FlexBox from "./FlexBox";
 
 type Props = {};
 export default class App extends Component<Props> {
@@ -86,6 +87,15 @@ export default class App extends Component<Props> {
     });
   }
 
+  _onForwardToFlexBox() {
+    let nextIndex = ++this.props.index;
+    this.props.navigator.push({
+      component: FlexBox,
+      title: "FlexBox " + nextIndex,
+      passProps: { index: nextIndex }
+    });
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -144,6 +154,14 @@ export default class App extends Component<Props> {
           title="TextInput"
           color="#841584"
           accessibilityLabel="show TextInput on tap"
+        />
+        <Button
+          onPress={() => {
+            this._onForwardToFlexBox();
+          }}
+          title="FlexBox"
+          color="#841584"
+          accessibilityLabel="show FlexBox on tap"
         />
       </View>
     );
