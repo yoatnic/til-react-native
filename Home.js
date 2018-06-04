@@ -21,6 +21,7 @@ import FlatListView from "./FlatListView";
 import InputAccessoryView from "./InputAccessoryView";
 import TextInputView from "./TextInputView";
 import FlexBox from "./FlexBox";
+import SectionListView from "./SectionListView";
 
 type Props = {};
 export default class App extends Component<Props> {
@@ -96,6 +97,15 @@ export default class App extends Component<Props> {
     });
   }
 
+  _onForwardToSectionList() {
+    let nextIndex = ++this.props.index;
+    this.props.navigator.push({
+      component: SectionListView,
+      title: "SectionListView " + nextIndex,
+      passProps: { index: nextIndex }
+    });
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -162,6 +172,14 @@ export default class App extends Component<Props> {
           title="FlexBox"
           color="#841584"
           accessibilityLabel="show FlexBox on tap"
+        />
+        <Button
+          onPress={() => {
+            this._onForwardToSectionList();
+          }}
+          title="SectionList"
+          color="#841584"
+          accessibilityLabel="show SectionList on tap"
         />
       </View>
     );
