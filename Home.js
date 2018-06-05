@@ -25,83 +25,11 @@ import SectionListView from "./SectionListView";
 
 type Props = {};
 export default class App extends Component<Props> {
-  _onForwardToProfile() {
+  _onForwardTo(destination, title) {
     let nextIndex = ++this.props.index;
     this.props.navigator.push({
-      component: Profile,
-      title: "Profile " + nextIndex,
-      passProps: { index: nextIndex }
-    });
-  }
-
-  _onForwardToScrollView() {
-    let nextIndex = ++this.props.index;
-    this.props.navigator.push({
-      component: ScrollView,
-      title: "ScrollView " + nextIndex,
-      passProps: { index: nextIndex }
-    });
-  }
-
-  _onForwardToAnimationView() {
-    let nextIndex = ++this.props.index;
-    this.props.navigator.push({
-      component: AnimationView,
-      title: "AnimationView " + nextIndex,
-      passProps: { index: nextIndex }
-    });
-  }
-
-  _onForwardToPickerView() {
-    let nextIndex = ++this.props.index;
-    this.props.navigator.push({
-      component: PickerView,
-      title: "PickerView " + nextIndex,
-      passProps: { index: nextIndex }
-    });
-  }
-
-  _onForwardToFlatListView() {
-    let nextIndex = ++this.props.index;
-    this.props.navigator.push({
-      component: FlatListView,
-      title: "FlatListView " + nextIndex,
-      passProps: { index: nextIndex }
-    });
-  }
-
-  _onForwardToInputAccessoryView() {
-    let nextIndex = ++this.props.index;
-    this.props.navigator.push({
-      component: InputAccessoryView,
-      title: "InputAccessoryView " + nextIndex,
-      passProps: { index: nextIndex }
-    });
-  }
-
-  _onForwardToTextInputView() {
-    let nextIndex = ++this.props.index;
-    this.props.navigator.push({
-      component: TextInputView,
-      title: "TextInputView " + nextIndex,
-      passProps: { index: nextIndex }
-    });
-  }
-
-  _onForwardToFlexBox() {
-    let nextIndex = ++this.props.index;
-    this.props.navigator.push({
-      component: FlexBox,
-      title: "FlexBox " + nextIndex,
-      passProps: { index: nextIndex }
-    });
-  }
-
-  _onForwardToSectionList() {
-    let nextIndex = ++this.props.index;
-    this.props.navigator.push({
-      component: SectionListView,
-      title: "SectionListView " + nextIndex,
+      component: destination,
+      title: `${title} nextIndex`,
       passProps: { index: nextIndex }
     });
   }
@@ -111,7 +39,7 @@ export default class App extends Component<Props> {
       <View style={styles.container}>
         <Button
           onPress={() => {
-            this._onForwardToProfile();
+            this._onForwardTo(Profile, "Profile");
           }}
           title="Profile"
           color="#841584"
@@ -119,7 +47,7 @@ export default class App extends Component<Props> {
         />
         <Button
           onPress={() => {
-            this._onForwardToScrollView();
+            this._onForwardTo(ScrollView, "ScrollView");
           }}
           title="ScrollView"
           color="#841584"
@@ -127,7 +55,7 @@ export default class App extends Component<Props> {
         />
         <Button
           onPress={() => {
-            this._onForwardToAnimationView();
+            this._onForwardTo(AnimationView, "AnimationView");
           }}
           title="Animation"
           color="#841584"
@@ -135,7 +63,7 @@ export default class App extends Component<Props> {
         />
         <Button
           onPress={() => {
-            this._onForwardToPickerView();
+            this._onForwardTo(PickerView, "PickerView");
           }}
           title="Picker"
           color="#841584"
@@ -143,7 +71,7 @@ export default class App extends Component<Props> {
         />
         <Button
           onPress={() => {
-            this._onForwardToFlatListView();
+            this._onForwardTo(FlatListView, "FlatListView");
           }}
           title="FlatList"
           color="#841584"
@@ -151,7 +79,7 @@ export default class App extends Component<Props> {
         />
         <Button
           onPress={() => {
-            this._onForwardToInputAccessoryView();
+            this._onForwardTo(InputAccessoryView, "InputAccessoryView");
           }}
           title="InputAccessory"
           color="#841584"
@@ -159,7 +87,7 @@ export default class App extends Component<Props> {
         />
         <Button
           onPress={() => {
-            this._onForwardToTextInputView();
+            this._onForwardTo(TextInputView, "TextInputView");
           }}
           title="TextInput"
           color="#841584"
@@ -167,7 +95,7 @@ export default class App extends Component<Props> {
         />
         <Button
           onPress={() => {
-            this._onForwardToFlexBox();
+            this._onForwardTo(FlexBox, "FlexBox");
           }}
           title="FlexBox"
           color="#841584"
@@ -175,7 +103,7 @@ export default class App extends Component<Props> {
         />
         <Button
           onPress={() => {
-            this._onForwardToSectionList();
+            this._onForwardTo(SectionListView, "SectionListView");
           }}
           title="SectionList"
           color="#841584"
