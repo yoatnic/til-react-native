@@ -22,6 +22,7 @@ import InputAccessoryView from "./InputAccessoryView";
 import TextInputView from "./TextInputView";
 import FlexBox from "./FlexBox";
 import SectionListView from "./SectionListView";
+import HandleTouch from "./HandleTouch";
 
 type Props = {};
 export default class App extends Component<Props> {
@@ -108,6 +109,14 @@ export default class App extends Component<Props> {
           title="SectionList"
           color="#841584"
           accessibilityLabel="show SectionList on tap"
+        />
+        <Button
+          onPress={() => {
+            this._onForwardTo(HandleTouch, "HandleTouch");
+          }}
+          title="HandleTouch"
+          color="#841584"
+          accessibilityLabel="show HandleTouch on tap"
         />
       </View>
     );
